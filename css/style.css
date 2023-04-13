@@ -7,7 +7,7 @@ body {
     padding: 0;
   }
   .page-wrapper {
-    width: 1440px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,6 +75,8 @@ body {
   .content {
     margin-top: 91px;
     margin-left: 244px;
+    display: flex;
+    justify-content: center;
   }
 
   h1 {
@@ -110,15 +112,13 @@ body {
     display: flex;
   }
 
-  .rec-wrapper .rec10 {
+    
+  .rec10 {
     width: 55px;
     height: 105px;
     background: #EBEF18;
-    position: absolute;
-    left: 1076px;
-    right: 315px;
-    bottom: 293px;
-    top: 626px;
+    margin-left: -13px;
+    margin-top: 16px;
   }
 
   .col1 {
@@ -186,6 +186,13 @@ body {
     margin-left: 14px;
   }
 
+  .rec-col2 {
+    margin-left: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+  }
+
   .rec2-3-4 {
     display: flex;
   }
@@ -205,17 +212,24 @@ body {
     background: #EBEF18;
   }
 
+  .col3 {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+
+  }
+
   .col3 .rec1 , .col3 .rec2 , .col3 .rec3 {
     margin-top: 0px;
     margin-bottom: 11px;
     width: 28px;
     height: 55px;
-    margin-left: 13px ;
+    
     background: #EBEF18;
   }
 
   .col3 .rec4 { 
-    margin-left: 13px;
+    
     width: 28px;
     height: 198px;
     background: #EBEF18;
@@ -223,7 +237,7 @@ body {
 
   footer {
     height: 41px;
-    width: 1440px;
+    width: 100%;
     margin-top: 145px;
     background: #000000;
   }
@@ -265,9 +279,16 @@ body {
     opacity: 30%;
   }
 
+  .mega-container {
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+  }
+  
   .container {
     display: flex;
-
+    justify-content: center;
+    width: 100%;
   }
 
   .boxes-container {
@@ -278,7 +299,6 @@ body {
   .bc-left {
     display: flex;
     flex-direction: column;
-    margin-left: 151px;
   }
 
   .bc-right {
@@ -286,7 +306,6 @@ body {
     flex-direction: column;
     margin-left: 55px;
     margin-top: 168px;
-
   }
 
   .rectangle {
@@ -305,7 +324,6 @@ body {
     width: 169px;
     height: 1925px;
     background-color: #EBEF18;
-    margin-left: 151px;
     position: relative;
   }
 
