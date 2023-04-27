@@ -3,14 +3,13 @@ const rectangleButton = document.getElementById('rectangleButton');
 let lastRectangleWidth = 80; // Initial width of the first rectangle
 let lastRectangleHeight = 80; // Initial height of the first rectangle
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Array of letters to assign to rectangles
-let saveLastLetter;
+let saveLastLetter = null;
 let flag = 0;
-let lastRectangleLetter;
+let lastRectangleLetter = null;
 let clickCounter = 0;
 let firstSelectedRectangle = null;
 const rectangles = []; // Create an empty array to store rectangles
-// Array to store unviewed rectangles
-let unviewedRectangles = [];
+let unviewedRectangles = []; // Create an empty array to store unviewed rectangles
 
 // Add event listener to the button
 rectangleButton.addEventListener('click', () => {
@@ -20,7 +19,7 @@ rectangleButton.addEventListener('click', () => {
 // Function to perform letter swapping
 function swapLetters() {
 
-  // Shuffle the unviewed rectangles array
+    // Shuffle the unviewed rectangles array
     shuffle(unviewedRectangles);
 
     // Loop through unviewed rectangles and swap letters
@@ -40,23 +39,23 @@ function swapLetters() {
     }
 }
 
-
 // Function to shuffle an array
 function shuffle(array) {
-  let currentIndex = array.length;
-  let temporaryValue, randomIndex;
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
 
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
 
-  return array;
+    return array;
 }
 
+// Function to create rectangles
 function createRectangles() {
     const rectangleContainer = document.getElementById('rectangleContainer');
     const sizeIncrement = 20;
@@ -78,6 +77,7 @@ function createRectangles() {
         rectangle.opened = false;
         rectangle.paired = false;
         
+        // Using if's and flags to make sure there will be always pair of letters and choosing random letter from the array of letters
         if(i==0) {
             if(flag==0){
                 const randomIndex = Math.floor(Math.random() * alphabet.length);
@@ -114,31 +114,31 @@ function createRectangles() {
         rectangleCount++;
         rectangle.addEventListener('click', handleClick);
         rectangleContainer.appendChild(rectangle);
-        unviewedRectangles.push(rectangle); // Add rectangle to the rectangles array
+        unviewedRectangles.push(rectangle); // Add rectangle to the unviewedRectangles array
         rectangles.push(rectangle); // Add rectangle to the rectangles array
         
-    } //end of for.
-    swapLetters();
+    } //end of for loop, 3 new unviewed rectangles created
+    swapLetters(); // Call swapLetters to perform letter swapping, making sure that each time creating 3 rectangles the position of the unviewed rectangles will change randomly
 }
 
 // Event handler for rectangle click
 function handleClick(event) {
     const rectangle = event.target;
+
+    // If the clickCounter is already bigger then 1, return
     if (clickCounter >1) {
         return;
     }
     // If the rectangle is already paired, return
     if (rectangle.paired) {
         return;
-    }
-    
-    // If the rectangle is viewed, return
+    }    
+    // If the rectangle is already opened, return
     if (rectangle.opened) {
         return;
     }
-    
-    // Set the rectangle as viewed
-    
+
+    // Set the rectangle as viewed, then opened. Showing the letter and change color to blue
     rectangle.viewed = true;
     rectangle.opened = true;
     rectangle.style.fontSize = '40px';
@@ -149,8 +149,10 @@ function handleClick(event) {
         firstSelectedRectangle = rectangle;
         clickCounter = 1;
     }
+
     // If this is the second selected rectangle, compare with the first
     else if (clickCounter === 1) {
+
         // If the selected rectangles have matching text
         if (rectangle.innerText === firstSelectedRectangle.innerText) {
             // Set both rectangles as paired
@@ -166,15 +168,20 @@ function handleClick(event) {
             // Reset click counter and first selected rectangle
             clickCounter = 0;
             firstSelectedRectangle = null;
-        } else {
+        } 
+        // If the selected rectangles do not match hide letter and change color to black
+        else {
             setTimeout(() => {
-            // If the selected rectangles do not match
+        
             rectangle.style.fontSize = '0px';
             rectangle.style.backgroundColor = 'black';
+
             firstSelectedRectangle.style.fontSize = '0px';
             firstSelectedRectangle.style.backgroundColor = 'black';
-            rectangle.opened=false;
-            firstSelectedRectangle.opened=false;
+            // No longer open rectangle
+            rectangle.opened = false;
+            firstSelectedRectangle.opened = false;
+            // Reset click counter and first selected rectangle
             firstSelectedRectangle = null;
             clickCounter = 0;
             
