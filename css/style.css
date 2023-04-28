@@ -112,7 +112,6 @@ body {
     display: flex;
   }
 
-    
   .rec10 {
     width: 55px;
     height: 105px;
@@ -426,8 +425,11 @@ body {
     height: 80px;
     background-color: black;
     margin-left: 132px;
+    margin-right: 64px;
     margin-top: 70px;
     color: #ffffff;
+    font-family: 'Tahoma';
+    font-style: normal;
     font-size: 0px;
     display: flex;
     justify-content: center;
@@ -458,6 +460,14 @@ body {
       }
 
       .rectangleLayout3 {
-        margin-left: 112px;
+        margin-left: 100px;
+      }
+
+      .game {
+        width: 100%;
+      }
+
+      .rectangleLayout3 {
+        margin-right: 35px;
       }
   }

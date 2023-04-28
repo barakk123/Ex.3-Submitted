@@ -2,6 +2,7 @@ let rectangleCount = 0;
 const rectangleButton = document.getElementById('rectangleButton');
 let lastRectangleWidth = 80; // Initial width of the first rectangle
 let lastRectangleHeight = 80; // Initial height of the first rectangle
+let fontSizeRec = null;
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Array of letters to assign to rectangles
 let saveLastLetter = null;
 let flag = 0;
@@ -141,7 +142,10 @@ function handleClick(event) {
     // Set the rectangle as viewed, then opened. Showing the letter and change color to blue
     rectangle.viewed = true;
     rectangle.opened = true;
-    rectangle.style.fontSize = '40px';
+    
+    fontSizeRec = parseInt(rectangle.style.height);
+    fontSizeRec /= 2;
+    rectangle.style.fontSize = fontSizeRec + 'px';
     rectangle.style.backgroundColor = 'blue';
     
     // If this is the first selected rectangle, store it
@@ -155,14 +159,13 @@ function handleClick(event) {
 
         // If the selected rectangles have matching text
         if (rectangle.innerText === firstSelectedRectangle.innerText) {
+
             // Set both rectangles as paired
             rectangle.paired = true;
             firstSelectedRectangle.paired = true;
             
             // Change font size to 40px and color to green
-            rectangle.style.fontSize = '40px';
             rectangle.style.backgroundColor = 'green';
-            firstSelectedRectangle.style.fontSize = '40px';
             firstSelectedRectangle.style.backgroundColor = 'green';
             
             // Reset click counter and first selected rectangle
